@@ -1,6 +1,6 @@
 import {
     createRouter,
-    createWebHistory
+    createWebHashHistory
 } from 'vue-router';
 
 import CoachList from './pages/coaches/CoachList.vue';
@@ -11,7 +11,7 @@ import RequestRecived from './pages/requests/RequestRecived.vue';
 import NotFound from './pages/NotFound.vue';
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createWebHashHistory(),
     routes: [
         {path:'/', redirect:'/coaches'},
         {path:'/coaches', component: CoachList},
