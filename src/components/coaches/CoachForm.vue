@@ -23,8 +23,8 @@
                 <label for="frontend">Frontend</label>
             </div>
             <div>
-                <input type="checkbox" id="backtend" value="backtend" v-model="areas">
-                <label for="backtend">Bcktend</label>
+                <input type="checkbox" id="backend" value="backend" v-model="areas">
+                <label for="backend">Backend</label>
             </div>
             <div>
                 <input type="checkbox" id="career" value="career" v-model="areas">
@@ -37,6 +37,7 @@
 
 <script>
 export default {
+    emits: ['save-data'],
     data() {
         return {
             firstName: '',
@@ -55,7 +56,8 @@ export default {
                 rate: this.rate,
                 areas:this.areas
             };
-            console.log(formData);
+
+            this.$emit('save-data', formData);
         }
     }
 }
