@@ -9,7 +9,7 @@
             <input type="text" id="lasttname" v-model="lastName">
         </div>
         <div class="form-control">
-            <label for="desctiption">First name</label>
+            <label for="desctiption">Desctiption</label>
             <textarea rows="5" id="desctiption" v-model="description"></textarea>
         </div>
         <div class="form-control">
@@ -55,6 +55,7 @@ export default {
                 rate: this.rate,
                 areas:this.areas
             };
+            console.log(formData);
         }
     }
 }
