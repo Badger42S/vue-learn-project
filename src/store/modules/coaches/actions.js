@@ -1,7 +1,8 @@
 export default {
-    registerCoach(context, data) {
+    async registerCoach(context, data) {
+        const userId = context.rootGetters.userId
         const coachData = {
-            id: context.rootGetters.userId,
+            //id: context.rootGetters.userId,
             firstName: data.first,
             lastName: data.last,
             areas: data.areas,
@@ -9,6 +10,14 @@ export default {
             hourlyRate: data.rate
         };
 
-        context.commit('registerCoach', coachData);
+        const response = await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches/${userId}.json`,{
+            method:'PUT',
+            body:JSON.stringify(coachData),
+        });
+
+        context.commit('registerCoach', {
+            id: userId,
+            ...coachData
+        });
     }
 };
