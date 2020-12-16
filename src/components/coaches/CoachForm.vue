@@ -6,14 +6,14 @@
             <p v-if="!firstName.isValid">Input incorrect</p>
         </div>
         <div class="form-control" :class="{invalid: !lastName.isValid}">
-            <label for="lasttname">First name</label>
+            <label for="lasttname">Last name</label>
             <input type="text" id="lasttname" v-model="lastName.val">
             <p v-if="!lastName.isValid">Input incorrect</p>
         </div>
-        <div class="form-control" :class="{invalid: !desctiption.isValid}">
-            <label for="desctiption">Desctiption</label>
-            <textarea rows="5" id="desctiption" v-model="description.val"></textarea>
-            <p v-if="!desctiption.isValid">Input incorrect</p>
+        <div class="form-control" :class="{invalid: !description.isValid}">
+            <label for="description">Description</label>
+            <textarea rows="5" id="description" v-model="description.val"></textarea>
+            <p v-if="!description.isValid">Input incorrect</p>
         </div>
         <div class="form-control" :class="{invalid: !rate.isValid}">
             <label for="rate">Hourly rate</label>

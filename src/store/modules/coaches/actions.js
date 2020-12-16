@@ -6,7 +6,7 @@ export default {
             firstName: data.first,
             lastName: data.last,
             areas: data.areas,
-            description: data.description,
+            description: data.desc,
             hourlyRate: data.rate
         };
 
