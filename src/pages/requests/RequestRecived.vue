@@ -23,10 +23,10 @@ export default {
     },
     computed:{
         recivedRequest() {
-            return this.$store.getters['reuest/requests'];
+            return this.$store.getters['requests/requests'];
         },
         hasRequest() {
-            return this.$store.getters['reuest/hasRequest'];
+            return this.$store.getters['requests/hasRequest'];
         }
     }
 }

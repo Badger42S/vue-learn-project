@@ -10,7 +10,7 @@ export default {
             hourlyRate: data.rate
         };
 
-        const response = await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches/${userId}.json`,{
+        await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches/${userId}.json`,{
             method:'PUT',
             body:JSON.stringify(coachData),
         });

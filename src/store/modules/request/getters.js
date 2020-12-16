@@ -1,9 +1,9 @@
 export default {
-    requests(state, getters, rootState, rootGetters) {
+    requests(state, _, _2, rootGetters) {
         const coachId = rootGetters.userId;
         return state.requests.filter(req => req.coachId === coachId);
     },
-    hasRequest(state, getters) {
-        return state.requests.length>0 && state.getters.requests;
+    hasRequest(_, getters) {
+        return getters.requests.length>0 && getters.requests;
     }
 }
