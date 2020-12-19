@@ -10,7 +10,7 @@ export default {
             hourlyRate: data.rate
         };
 
-        await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches/${userId}.json`,{
+        await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches.json`,{
             method:'PUT',
             body:JSON.stringify(coachData),
         });
@@ -19,5 +19,26 @@ export default {
             id: userId,
             ...coachData
         });
+    },
+    async loadCoahes(context) {
+        const response = await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches/${userId}.json`);
+        const responseData = await response.json();
+        if(!response.ok) {
+
+        }
+        const coaches = [];
+        for (const key in responseData) {
+            const coachData = {
+                id: key,
+                firstName: responseData[key].firstName,
+                lastName: responseData[key].lastName,
+                areas: responseData[key].areas,
+                description: responseData[key].description,
+                hourlyRate: responseData[keysetCoached].hourlyRate
+            };
+            coaches.push(coachData);
+        }
+
+        context.commit('setCoached', coaches);
     }
 };
