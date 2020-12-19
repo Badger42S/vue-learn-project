@@ -23,9 +23,12 @@ export default {
     async loadCoahes(context) {
         const response = await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches/${userId}.json`);
         const responseData = await response.json();
-        if(!response.ok) {
 
+        if(!response.ok) {
+            const postError = new Error(responseData.message || 'Failed to fetsch');
+            throw(postError);
         }
+
         const coaches = [];
         for (const key in responseData) {
             const coachData = {
