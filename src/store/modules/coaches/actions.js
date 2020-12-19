@@ -20,8 +20,8 @@ export default {
             ...coachData
         });
     },
-    async loadCoahes(context) {
-        const response = await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches/${userId}.json`);
+    async loadCoaches(context) {
+        const response = await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches.json`);
         const responseData = await response.json();
 
         if(!response.ok) {
@@ -37,7 +37,7 @@ export default {
                 lastName: responseData[key].lastName,
                 areas: responseData[key].areas,
                 description: responseData[key].description,
-                hourlyRate: responseData[keysetCoached].hourlyRate
+                hourlyRate: responseData[key].hourlyRate
             };
             coaches.push(coachData);
         }
