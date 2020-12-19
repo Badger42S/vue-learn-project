@@ -1,8 +1,14 @@
 <template>
+    <base-dialog :show="!!errorMessage" title="An error" @close="errorHandler">
+        <p>{{errorMessage}}</p>
+    </base-dialog>
     <section>
         <base-card>
             <h2>Request recived</h2>
-            <ul v-if="hasRequest">
+            <div v-if="isLoading">
+                <base-spiner></base-spiner>
+            </div>
+            <ul v-else-if="hasRequest && !isLoading">
                 <request-item 
                     v-for="request in recivedRequest" 
                     :key="request.id"
@@ -17,9 +23,17 @@
 
 <script>
 import RequestItem from '../../components/requests/RequesItem.vue'
+import BaseDialog from '../../components/ui/BaseDialog.vue';
 export default {
     components: {
-        RequestItem
+        RequestItem,
+        BaseDialog
+    },
+    data() {
+        return {
+            isLoading:false,
+            errorMessage:null
+        }
     },
     computed:{
         recivedRequest() {
@@ -27,6 +41,20 @@ export default {
         },
         hasRequest() {
             return this.$store.getters['requests/hasRequest'];
+        }
+    },
+    methods: {
+        async loadRequests() {
+            this.isLoading =true;
+            try {
+                await this.$store.dispatch('requests/fetshRquests');
+            } catch(err) {
+                this.errorMessage = err.message || 'Cant download requests.'
+            }
+            this.isLoading =false;
+        },
+        errorHandler() {
+            this.errorMessage = null;
         }
     }
 }
