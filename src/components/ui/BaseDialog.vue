@@ -98,13 +98,13 @@ menu {
   margin: 0;
 }
 
-.dilog-entre-from,
+.dilog-enter-from,
 .dilog-leave-to{
   opacity: 0;
   transform: scale(0.8);
 }
 
-.dilog-entre-active{
+.dilog-enter-active{
   transition: all 0.3s ease-out;
 }
 
@@ -112,7 +112,7 @@ menu {
   transition: all 0.3s ease-in;
 }
 
-.dilog-entre-to,
+.dilog-enter-to,
 .dilog-leave-from{
   opacity: 1;
   transform: scale(1);

@@ -31,7 +31,7 @@ body {
   margin: 0;
 }
 
-.route-entre-from{
+.route-enter-from{
   opacity: 0;
   transform: translateY(-30px);
 }
@@ -39,13 +39,13 @@ body {
   opacity: 0;
   transform: translateY(30px);
 }
-.route-entre-active{
+.route-enter-active{
   transition: all 0.3s ease-out;
 }
 .route-leave-active{
   transition: all 0.3s ease-in;
 }
-.route-entre-to,
+.route-enter-to,
 .route-leave-from{
   opacity: 1;
   transform: translateY(0px);
