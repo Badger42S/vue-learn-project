@@ -46,5 +46,8 @@ export default{
             userId: respData.localId,
             tokenExperation: respData.expiresIn
         });
+    },
+    logout(context) {
+        context.commit('logout');
     }
 };
