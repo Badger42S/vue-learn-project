@@ -9,8 +9,9 @@ export default {
             description: data.desc,
             hourlyRate: data.rate
         };
-
-        await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches/${userId}.json`,{
+        
+        const token =context.rootGetters.token;
+        await fetch(`https://vue-coacj-project-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=${token}`,{
             method:'PUT',
             body:JSON.stringify(coachData),
         });
