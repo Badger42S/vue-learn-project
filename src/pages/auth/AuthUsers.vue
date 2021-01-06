@@ -67,14 +67,14 @@ export default {
                     email: this.email,
                     password: this.password
                 };
-
             try {
                 if( this.mode === "login") {
                     await this.$store.dispatch('login', actionPayload);
                 } else {
                     await this.$store.dispatch('signup', actionPayload);
                 }
-                const redirectUrl = '/' + (this.$router.query.redirect || 'coaches');
+                console.log(this.$route.query.redirect || 'coaches');
+                const redirectUrl = '/' + ('coaches');
                 this.$router.replace(redirectUrl);
             } catch (error) {
                 this.error=error.message || 'Failde of authenticate';
