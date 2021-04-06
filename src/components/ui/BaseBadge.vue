@@ -6,13 +6,13 @@
 
 <script>
 export default {
-    props: ['type', 'title'],
-    computed: {
-        text() {
-            return this.title.toUpperCase();
-        }
-    }
-}
+  props: ['type', 'title'],
+  computed: {
+    text() {
+      return this.title.toUpperCase();
+    },
+  },
+};
 </script>
 
 <style scoped>

@@ -10,8 +10,8 @@
                     <base-spiner></base-spiner>
                 </div>
                 <ul v-else-if="hasRequest && !isLoading">
-                    <request-item 
-                        v-for="request in recivedRequest" 
+                    <request-item
+                        v-for="request in recivedRequest"
                         :key="request.id"
                         :email="request.userEmail"
                         :message="request.message"
@@ -24,42 +24,43 @@
 </template>
 
 <script>
-import RequestItem from '../../components/requests/RequesItem.vue'
+import RequestItem from '../../components/requests/RequesItem.vue';
 import BaseDialog from '../../components/ui/BaseDialog.vue';
+
 export default {
-    components: {
-        RequestItem,
-        BaseDialog
+  components: {
+    RequestItem,
+    BaseDialog,
+  },
+  data() {
+    return {
+      isLoading: false,
+      errorMessage: null,
+    };
+  },
+  computed: {
+    recivedRequest() {
+      return this.$store.getters['requests/requests'];
     },
-    data() {
-        return {
-            isLoading:false,
-            errorMessage:null
-        }
+    hasRequest() {
+      return this.$store.getters['requests/hasRequest'];
     },
-    computed:{
-        recivedRequest() {
-            return this.$store.getters['requests/requests'];
-        },
-        hasRequest() {
-            return this.$store.getters['requests/hasRequest'];
-        }
+  },
+  methods: {
+    async loadRequests() {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch('requests/fetshRquests');
+      } catch (err) {
+        this.errorMessage = err.message || 'Cant download requests.';
+      }
+      this.isLoading = false;
     },
-    methods: {
-        async loadRequests() {
-            this.isLoading =true;
-            try {
-                await this.$store.dispatch('requests/fetshRquests');
-            } catch(err) {
-                this.errorMessage = err.message || 'Cant download requests.'
-            }
-            this.isLoading =false;
-        },
-        errorHandler() {
-            this.errorMessage = null;
-        }
-    }
-}
+    errorHandler() {
+      this.errorMessage = null;
+    },
+  },
+};
 </script>
 
 <style scoped>

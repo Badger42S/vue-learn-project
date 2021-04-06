@@ -9,13 +9,13 @@
 
 <script>
 export default {
-    props:['email', 'message'],
-    computed: {
-        emailLink() {
-            return 'malito:' + this.email;
-        }
-    }
-}
+  props: ['email', 'message'],
+  computed: {
+    emailLink() {
+      return `malito:${this.email}`;
+    },
+  },
+};
 </script>
 
 <style scoped>

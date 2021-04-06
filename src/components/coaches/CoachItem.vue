@@ -3,10 +3,10 @@
         <h3>{{ fullName }}</h3>
         <h4>${{ rate }}/hour</h4>
         <div>
-            <base-badge 
+            <base-badge
                 :type="area"
                 :title="area"
-                v-for=" area in areas" 
+                v-for=" area in areas"
                 :key="area"
             ></base-badge>
         </div>
@@ -19,19 +19,19 @@
 
 <script>
 export default {
-    props:['id', 'firstNmae', 'lastName', 'rate', 'areas'],
-    computed:{
-        fullName() {
-            return this.firstNmae + ' ' + this.lastName;
-        },
-        coachContactLink() {
-            return this.$route.path + '/' + this.id + '/contact';  // this.$route.path ='/coaches'
-        },
-        coachDetailsLink() {
-            return this.$route.path + '/' + this.id;
-        }
-    }
-}
+  props: ['id', 'firstNmae', 'lastName', 'rate', 'areas'],
+  computed: {
+    fullName() {
+      return `${this.firstNmae} ${this.lastName}`;
+    },
+    coachContactLink() {
+      return `${this.$route.path}/${this.id}/contact`; // this.$route.path ='/coaches'
+    },
+    coachDetailsLink() {
+      return `${this.$route.path}/${this.id}`;
+    },
+  },
+};
 </script>
 
 <style scoped>

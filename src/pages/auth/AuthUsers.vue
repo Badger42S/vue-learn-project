@@ -27,73 +27,70 @@
 
 <script>
 export default {
-    data() {
-        return {
-            email:'',
-            password:'',
-            formIsValid: true,
-            mode:'login',
-            isLoading:false,
-            error: null
-        }
+  data() {
+    return {
+      email: '',
+      password: '',
+      formIsValid: true,
+      mode: 'login',
+      isLoading: false,
+      error: null,
+    };
+  },
+  computed: {
+    submitButtonCaption() {
+      if (this.mode === 'login') {
+        return 'Login';
+      }
+      return 'Signup';
     },
-    computed:{
-        submitButtonCaption() {
-            if(this.mode === 'login') {
-                return 'Login';
-            } else {
-                return 'Signup';
-            }
-        },
-        switchModeButtonCaption() {
-            if(this.mode === 'login') {
-                return 'Signup instead';
-            } else {
-                return 'Login instead';
-            }
-        }
+    switchModeButtonCaption() {
+      if (this.mode === 'login') {
+        return 'Signup instead';
+      }
+      return 'Login instead';
     },
-    methods: {
-        async submitForm() {
-            if(this.email ==='' || ! this.email.includes('@') || this.password.length<5) {
-                this.formIsValid = false;
-                return;
-            } 
-            
-            this.isLoading=true;
+  },
+  methods: {
+    async submitForm() {
+      if (this.email === '' || !this.email.includes('@') || this.password.length < 5) {
+        this.formIsValid = false;
+        return;
+      }
 
-            const actionPayload = 
-                {
-                    email: this.email,
-                    password: this.password
-                };
-            try {
-                if( this.mode === "login") {
-                    await this.$store.dispatch('login', actionPayload);
-                } else {
-                    await this.$store.dispatch('signup', actionPayload);
-                }
-                console.log(this.$route.query.redirect || 'coaches');
-                const redirectUrl = '/' + ('coaches');
-                this.$router.replace(redirectUrl);
-            } catch (error) {
-                this.error=error.message || 'Failde of authenticate';
-            }
+      this.isLoading = true;
 
-            this.isLoading=false;
-        },
-        switchAuthMode() {
-            if(this.mode === 'login') {
-                this.mode = 'signup'
-            } else {
-                this.mode ='login'
-            }
-        },
-        handleError() {
-            this.error=null;
+      const actionPayload = {
+        email: this.email,
+        password: this.password,
+      };
+      try {
+        if (this.mode === 'login') {
+          await this.$store.dispatch('login', actionPayload);
+        } else {
+          await this.$store.dispatch('signup', actionPayload);
         }
-    }
-}
+        console.log(this.$route.query.redirect || 'coaches');
+        const redirectUrl = '/' + ('coaches');
+        this.$router.replace(redirectUrl);
+      } catch (error) {
+        this.error = error.message || 'Failde of authenticate';
+      }
+
+      this.isLoading = false;
+    },
+    switchAuthMode() {
+      if (this.mode === 'login') {
+        this.mode = 'signup';
+      } else {
+        this.mode = 'login';
+      }
+    },
+    handleError() {
+      this.error = null;
+    },
+  },
+};
 </script>
 
 <style scoped>

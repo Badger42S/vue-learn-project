@@ -17,9 +17,9 @@
         </section>
         <section>
             <base-card>
-                <base-badge 
-                    v-for="area in areas" 
-                    :key="area" 
+                <base-badge
+                    v-for="area in areas"
+                    :key="area"
                     :type="area"
                     :title="area"
                 ></base-badge>
@@ -31,31 +31,31 @@
 
 <script>
 export default {
-    props:['id'],
-    data() {
-        return {
-            selectedCoach:null
-        };
+  props: ['id'],
+  data() {
+    return {
+      selectedCoach: null,
+    };
+  },
+  created() {
+    this.selectedCoach = this.$store.getters['coaches/coaches'].find((coach) => coach.id === this.id);
+  },
+  computed: {
+    fullName() {
+      return `${this.selectedCoach.firstName} ${this.selectedCoach.lastName}`;
     },
-    created() {
-        this.selectedCoach = this.$store.getters['coaches/coaches'].find(coach=> coach.id === this.id);
+    contactLink() {
+      return `${this.$route.path}/${this.id}/contact`;
     },
-    computed: {
-        fullName() {
-            return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName;
-        },
-        contactLink() {
-            return this.$route.path + '/' + this.id + '/contact';
-        },
-        areas() {
-            return this.selectedCoach.areas;
-        },
-        rate() {
-            return this.selectedCoach.hourlyRate;
-        },
-        description() {
-            return this.selectedCoach.description;
-        }
-    }
-}
+    areas() {
+      return this.selectedCoach.areas;
+    },
+    rate() {
+      return this.selectedCoach.hourlyRate;
+    },
+    description() {
+      return this.selectedCoach.description;
+    },
+  },
+};
 </script>
